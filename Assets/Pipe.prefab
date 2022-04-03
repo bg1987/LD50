@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1030063594290468565}
   - component: {fileID: 1030063594290468564}
   - component: {fileID: 3584968129750574798}
-  - component: {fileID: 203757330535048201}
   m_Layer: 0
   m_Name: Pipe
   m_TagString: Untagged
@@ -46,7 +45,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0.5}
@@ -77,12 +76,12 @@ MonoBehaviour:
   breakChance: 0.1
   breakablePart: {fileID: 1030063594290468564}
   mySprite: {fileID: 1030063595323799081}
-  pipeH: {fileID: 6615319868462110837, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
-  pipeV: {fileID: 5327950094024008212, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
-  pipeUR: {fileID: 4018074224661003100, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
-  pipeUL: {fileID: -4869357254534750094, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
-  pipeDR: {fileID: -6721728136321296765, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
-  pipeDL: {fileID: -7826287199498012479, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
+  pipeH: {fileID: 3337752960682553098, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
+  pipeV: {fileID: 2748969825482564999, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
+  pipeUR: {fileID: 2217120800423792498, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
+  pipeUL: {fileID: -2603756143326869134, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
+  pipeDR: {fileID: -612693696000689919, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
+  pipeDL: {fileID: -8084869640555870138, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
 --- !u!114 &1030063594290468564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,30 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffc27129f48d6d459ad82598121a1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 203757330535048201}
   shootAwayForce: 200
   rotationForce: 50000
---- !u!50 &203757330535048201
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030063594290468567}
-  m_BodyType: 0
-  m_Simulated: 0
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.5
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1030063595323799083
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4869357254534750094, guid: 756eedfe115b7fe42ab917fe8d0a5c3e, type: 3}
+  m_Sprite: {fileID: -2603756143326869134, guid: b915f510cc8213c49bcc3caa9fb7d5bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

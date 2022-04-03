@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BreakAway : MonoBehaviour
 {
-    public Rigidbody2D body;
-    
     public float shootAwayForce;
     public float rotationForce;
     
     public void Break()
     {
-        body.simulated = true;
+        var body = gameObject.AddComponent<Rigidbody2D>();
+        body.mass = 0.5f;
 
         var direction = (new Vector2(Random.Range(-1f, 1f), 1)).normalized;
         body.AddForce(direction*shootAwayForce);
