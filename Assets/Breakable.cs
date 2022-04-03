@@ -19,6 +19,12 @@ namespace DefaultNamespace
         private Color originalColor;
 
         public BreakAway breakAway;
+
+        public MMF_Player player;
+        public MMWiggle wiggle;
+        public float wiggleAmpMin = 0.01f;
+        public float wiggleAmpMax = 0.2f;
+        private float effectsTimer = 1f;
         
         public void Break()
         {
@@ -63,6 +69,8 @@ namespace DefaultNamespace
                     broken = false;
                 }
 
+                PlayEffects();
+
                 if (BreakPercentage >= 1)
                 {
                     breakAway.Break();
@@ -70,6 +78,22 @@ namespace DefaultNamespace
                 }
 
                 mySprite.color = Color.Lerp(originalColor, faultColor, BreakPercentage);
+            }
+        }
+
+        private void PlayEffects()
+        {
+            effectsTimer += Time.deltaTime;
+            if (effectsTimer > 0.5f && BreakPercentage > 0.5f)
+            {
+                var wiggleAmp = Mathf.Lerp(wiggleAmpMin, wiggleAmpMax, BreakPercentage);
+                wiggle.PositionWiggleProperties.AmplitudeMin = Vector3.one * wiggleAmp;
+                player.PlayFeedbacks();
+            }
+
+            if (effectsTimer > 0.5f)
+            {
+                effectsTimer = 0f;
             }
         }
 
