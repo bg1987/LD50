@@ -44,7 +44,6 @@ namespace DefaultNamespace
         {
             if (GameManager.instance.IsGameStarted)
             {
-                Debug.Log(DifficultyAdjustedSecondsToFix);
                 if (BeingFixed)
                 {
                     BreakPercentage -= 1 / DifficultyAdjustedSecondsToFix * Time.deltaTime;

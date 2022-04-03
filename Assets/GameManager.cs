@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
     }
 
     #region Game Flow Control
-    public void RestartGame()
+    public void RestartGame(float delay = 0f)
     {
         IsGameStarted = false;
         IsGameOver = false;
-        ShowStartGame();
+        ShowStartGame(delay);
     }
 
     public void StartGame()
@@ -74,8 +74,14 @@ public class GameManager : MonoBehaviour
         StartGameUI.SetActive(false);
     }
 
-    private void ShowStartGame()
+    private void ShowStartGame(float delay = 0f)
     {
+        StartCoroutine(ShowStartGameCoro(delay));
+    }
+
+    IEnumerator ShowStartGameCoro(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         EndGameUI.SetActive(false);
         GameUI.SetActive(false);
         StartGameUI.SetActive(true);
