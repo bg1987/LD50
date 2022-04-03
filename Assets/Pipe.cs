@@ -60,7 +60,84 @@ public class Pipe : MonoBehaviour
         {
             SetOrientation(PipeOrientation.DL);
         }
+        
+        //first or last piece
+        if (PipeGenerator.pipeCount == myIndex)
+        {
+            var prevIndex = myIndex - 1;
+            //were at y = 9 edge
+            if (y == 9)
+            {
+                if (PipeGenerator.Cell(x -1 , y) == prevIndex)
+                {
+                    SetOrientation(PipeOrientation.DL);
+                }
 
+                if (PipeGenerator.Cell(x + 1, y) == prevIndex)
+                {
+                    SetOrientation(PipeOrientation.DR);
+                }
+                
+                if (PipeGenerator.Cell(x, y - 1) == prevIndex)
+                {
+                    SetOrientation(PipeOrientation.V);
+                }
+            }
+            //were at x = 9 edge
+            else
+            {
+                if (PipeGenerator.Cell(x - 1, y) == prevIndex)
+                {
+                    SetOrientation(PipeOrientation.H);
+                }
+                if (PipeGenerator.Cell(x , y + 1) == prevIndex)
+                {
+                    SetOrientation(PipeOrientation.DR);
+                }
+                if (PipeGenerator.Cell(x , y - 1) == prevIndex)
+                {
+                    SetOrientation(PipeOrientation.UR);
+                }
+            }
+        }
+
+        if (myIndex == 1)
+        {
+            //were at x = 0 edge
+            if (y == 0)
+            {
+                if (PipeGenerator.Cell(x, y + 1) == 2)
+                {
+                    SetOrientation(PipeOrientation.V);
+                }
+
+                if (PipeGenerator.Cell(x + 1, y) == 2)
+                {
+                    SetOrientation(PipeOrientation.UR);
+                }
+                
+                if (PipeGenerator.Cell(x - 1, y) == 2)
+                {
+                    SetOrientation(PipeOrientation.UL);
+                }
+            }
+            //were at y = 0 edge
+            else
+            {
+                if (PipeGenerator.Cell(x + 1, y) == 2)
+                {
+                    SetOrientation(PipeOrientation.H);
+                }
+                if (PipeGenerator.Cell(x , y + 1) == 2)
+                {
+                    SetOrientation(PipeOrientation.DL);
+                }
+                if (PipeGenerator.Cell(x , y - 1) == 2)
+                {
+                    SetOrientation(PipeOrientation.UL);
+                }
+            }
+        }
     }
 
     // Update is called once per frame

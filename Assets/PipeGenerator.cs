@@ -14,6 +14,8 @@ public class PipeGenerator : MonoBehaviour
 
     public static int[,] grid = new int[GRID_SIZE,GRID_SIZE];
 
+    public static int pipeCount = 0;
+
     public static int Cell(int x, int y)
     {
         if (x >= GRID_SIZE || x < 0 || y >= GRID_SIZE || y < 0)
@@ -154,14 +156,17 @@ public class PipeGenerator : MonoBehaviour
 
     void InstantiatePipe(int[] current)
     {
+        pipeCount += 1;
         var newPipe = Instantiate(Pipe, new Vector3(current[0], current[1]), Quaternion.identity);
         newPipe.transform.parent = this.transform;
+        newPipe.name = "Pipe " + pipeCount;
     }
 
     void GenerateLine(int retry = 0)
     {
         try
         {
+            PipeGenerator.pipeCount = 0;
             var current = StartPosition();
             var pipeCount = 0;
             InstantiatePipe(current);
@@ -172,7 +177,6 @@ public class PipeGenerator : MonoBehaviour
 
             while(true)
             {
-                
                 current = NextPipe(current);
                 InstantiatePipe(current);
                 grid[current[0], current[1]] = ++pipeCount;
