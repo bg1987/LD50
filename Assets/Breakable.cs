@@ -1,4 +1,5 @@
 ﻿using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -16,7 +17,8 @@ namespace DefaultNamespace
         public bool broken { get; private set; } = false;
         
         private Color originalColor;
-        
+
+        public BreakAway breakAway;
         
         public void Break()
         {
@@ -55,7 +57,7 @@ namespace DefaultNamespace
                 }
 
                 BreakPercentage = Mathf.Clamp01(BreakPercentage);
-
+                
                 if (BreakPercentage <= 0)
                 {
                     broken = false;
@@ -63,6 +65,7 @@ namespace DefaultNamespace
 
                 if (BreakPercentage >= 1)
                 {
+                    breakAway.Break();
                     GameManager.instance.GameOver();
                 }
 
