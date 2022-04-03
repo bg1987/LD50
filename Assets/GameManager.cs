@@ -6,17 +6,24 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
     public int ScorePerSecond = 10;
+    public bool IsGameStarted { get; private set; }
+    public bool IsGameOver { get; private set; }
+    
     public int Score { get; private set; }
+
     public Text ScoreUI;
-    public PipeGenerator generator;
 
     public GameObject StartGameUI;
     public GameObject GameUI;
     public GameObject EndGameUI;
+    
+    public PipeGenerator generator;
 
-    public bool IsGameStarted;
-    public bool IsGameOver;
+    public int secondsToEnd = 120;
+    public AnimationCurve difficultyCurve;
+
 
     //half assed singleton
     public static GameManager instance;
@@ -24,11 +31,11 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
-
         RestartGame();
     }
 
-    // Update is called once per frame
+    public float DifficultyModifier => Mathf.Clamp01(difficultyCurve.Evaluate((Score*1f / ScorePerSecond*1f) / secondsToEnd *1f));
+
     void FixedUpdate()
     {
         if (IsGameStarted)
@@ -37,6 +44,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region Game Flow Control
     public void RestartGame()
     {
         IsGameStarted = false;
@@ -59,12 +67,6 @@ public class GameManager : MonoBehaviour
         ShowGameOver();
     }
 
-    private void SetScore(int value)
-    {
-        Score = value;
-        ScoreUI.text = value.ToString();
-    }
-
     private void ShowGameOver()
     {
         EndGameUI.SetActive(true);
@@ -85,4 +87,13 @@ public class GameManager : MonoBehaviour
         GameUI.SetActive(true);
         StartGameUI.SetActive(false);
     }
+    #endregion
+    
+    private void SetScore(int value)
+    {
+        Score = value;
+        ScoreUI.text = value.ToString();
+    }
+    
+    
 }

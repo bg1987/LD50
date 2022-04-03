@@ -37,14 +37,17 @@ namespace DefaultNamespace
             get;
             private set;
         }
-        
+
+        public float DifficultyAdjustedSecondsToFix => Mathf.Lerp(SecondsToFix, SecondsToBreak, GameManager.instance.DifficultyModifier);
+
         private void Update()
         {
             if (GameManager.instance.IsGameStarted)
             {
+                Debug.Log(DifficultyAdjustedSecondsToFix);
                 if (BeingFixed)
                 {
-                    BreakPercentage -= 1 / SecondsToFix * Time.deltaTime;
+                    BreakPercentage -= 1 / DifficultyAdjustedSecondsToFix * Time.deltaTime;
                 }
 
                 if (broken && !BeingFixed)

@@ -10,7 +10,7 @@ public class PipeGenerator : MonoBehaviour
 
     public GameObject Pipe;
     
-    private bool generate;
+    public bool generate;
 
     public static int[,] grid = new int[GRID_SIZE,GRID_SIZE];
 
